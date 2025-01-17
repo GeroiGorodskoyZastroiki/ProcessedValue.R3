@@ -65,6 +65,9 @@ namespace ProcessedValue.R3
                 if (item == null) 
                 {
                     Console.Error.WriteLine($"Array element at {i} is skipped because it's null.");
+                    #if UNITY_EDITOR
+                    UnityEngine.Debug.LogWarning($"Array element at {i} is skipped because it's null.");
+                    #endif
                     continue;
                 }
 
@@ -79,7 +82,13 @@ namespace ProcessedValue.R3
 
                     method.Invoke(this, new object[] { item });
                 }
-                else Console.Error.WriteLine($"Array element at {i} is skipped because it's not ReactiveProperty<> or its descendant.");
+                else 
+                {
+                    Console.Error.WriteLine($"Array element at {i} is skipped because it's not ReactiveProperty<> or its descendant.");
+                    #if UNITY_EDITOR
+                    UnityEngine.Debug.LogWarning($"Array element at {i} is skipped because it's not ReactiveProperty<> or its descendant.");
+                    #endif
+                }
             }
         }
 
