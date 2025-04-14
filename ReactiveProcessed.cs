@@ -8,7 +8,7 @@ namespace ProcessedValue.R3
     where TSort : IComparable<TSort>
     {
         public RProcessed() {} 
-        public RProcessed(TValue initialValue) : base(initialValue)
+        public RProcessed(TValue initialValue) : base(initialValue) {}
     }
     
     [Serializable] public class RProcessed<TValue> : ReactiveProcessed<TValue>
